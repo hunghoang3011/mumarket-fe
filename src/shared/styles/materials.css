@@ -1,0 +1,119 @@
+/*
+ * Vật liệu M0–M4 (DESIGN §6). Chỉ dùng đúng vùng được phép:
+ * M0 navy phẳng: mặc định, dữ liệu tiền/quyền/form/bảng.
+ * M1 cảnh thiên giới: hero, cover sản phẩm, ảnh thẻ (ảnh SVG, không texture CSS).
+ * M2 kim loại khắc: nút chính, ornament góc, đường chia editorial, wordmark.
+ * M3 kính thiên giới: chỉ header khi nằm trên hero.
+ * M4 hào quang: hover/focus thẻ game + một điểm sáng hero; tĩnh, không pulse.
+ */
+
+/* M2 — nút chính kim loại */
+.btn-metal {
+  background-image: linear-gradient(180deg, var(--metal-gold-hi), var(--metal-gold-lo));
+  border: 1px solid var(--metal-edge);
+  box-shadow: inset 0 1px 0 rgb(255 217 120 / 0.6);
+  color: var(--on-action);
+  border-radius: var(--radius-control);
+  font-weight: 600;
+  transition: background-image var(--motion-fast) ease;
+}
+.btn-metal:hover {
+  background-image: linear-gradient(180deg, var(--metal-gold-hover-hi), var(--metal-gold-hover-lo));
+}
+.btn-metal:active {
+  background-image: linear-gradient(180deg, var(--metal-gold-lo), var(--metal-gold-hi));
+}
+.btn-metal:disabled,
+.btn-metal[aria-disabled="true"] {
+  background-image: none;
+  background-color: var(--disabled-bg);
+  color: var(--disabled-text);
+  border-color: var(--border-subtle);
+  box-shadow: none;
+}
+
+/* M3 — kính header trên hero */
+.header-glass {
+  background-color: rgb(8 11 18 / 0.85);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgb(212 168 67 / 0.25);
+}
+@supports not (backdrop-filter: blur(8px)) {
+  .header-glass {
+    background-color: var(--surface-page);
+  }
+}
+.header-solid {
+  background-color: var(--surface-page);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* M4 — hào quang tĩnh cho thẻ game */
+.halo-frame {
+  position: relative;
+}
+.halo-frame::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: 0 0 24px rgb(212 168 67 / 0.18);
+  opacity: 0;
+  transition: opacity var(--motion-ui) ease;
+  pointer-events: none;
+}
+.halo-frame:hover::after,
+.halo-frame:focus-within::after {
+  opacity: 1;
+}
+.halo-frame:hover,
+.halo-frame:focus-within {
+  border-color: var(--action-primary);
+}
+
+/* Scrim hero */
+.scrim-hero {
+  background-image: linear-gradient(90deg, rgb(8 11 18 / 0.92) 0 40%, transparent 70%);
+}
+.scrim-hero-mobile {
+  background-color: rgb(8 11 18 / 0.88);
+}
+
+/* Ornament góc M2 — chữ L móc mây, 2 nét 1px */
+.ornament-corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+
+/* Đường chia tiêu đề editorial M2 */
+.divider-editorial {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  height: 8px;
+}
+.divider-editorial::before,
+.divider-editorial::after {
+  content: "";
+  width: 56px;
+  height: 1px;
+  background-color: var(--metal-edge);
+}
+.divider-editorial > span {
+  width: 8px;
+  height: 8px;
+  margin: 0 8px;
+  background-color: var(--action-primary);
+  transform: rotate(45deg);
+  flex: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-metal,
+  .halo-frame::after {
+    transition: none;
+  }
+}

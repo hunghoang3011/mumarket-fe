@@ -1,0 +1,73 @@
+/*
+ * GALAXY AUTO — nguồn token duy nhất (DESIGN §6).
+ * Mọi màu/độ nổi/tương phản đều lấy từ đây; cấm hex trực tiếp trong TSX.
+ */
+:root {
+  /* Bề mặt */
+  --surface-page: #080b12;
+  --surface-panel: #0b1423;
+  --surface-raised: #132238;
+  --surface-input: #080b12;
+
+  /* Chữ */
+  --text-primary: #f5ebd6;
+  --text-secondary: #c6c0b5;
+  --text-muted: #a39e95;
+
+  /* Hành động */
+  --action-primary: #d4a843;
+  --on-action: #080b12;
+  --link: #ffd978;
+
+  /* Kim loại nút M2 */
+  --metal-gold-hi: #e6c064;
+  --metal-gold-lo: #c29535;
+  --metal-gold-hover-hi: #f0cd72;
+  --metal-gold-hover-lo: #cfa23f;
+  --metal-edge: #8c622b;
+
+  /* Viền */
+  --border-subtle: #28364b;
+  --border-control: #6d7f99;
+  --border-ornament: #8c622b;
+
+  /* Focus */
+  --focus-ring: #9bc7ff;
+  --focus-offset: #080b12;
+
+  /* Trạng thái */
+  --status-info: #92c5ff;
+  --status-info-bg: #0e2035;
+  --status-success: #82d5aa;
+  --status-success-bg: #11261e;
+  --status-warning: #f0a35e;
+  --status-warning-bg: #2b2212;
+  --status-danger: #ff9a99;
+  --status-danger-bg: #30191d;
+  --status-neutral: #b8c1cf;
+
+  /* Vô hiệu */
+  --disabled-bg: #1a2433;
+  --disabled-text: #8e97a5;
+
+  /* Bo góc: 4 chi tiết nhỏ, 6 control, 8 panel, 12 dialog/drawer */
+  --radius-detail: 4px;
+  --radius-control: 6px;
+  --radius-panel: 8px;
+  --radius-overlay: 12px;
+
+  /* Lớp */
+  --z-sticky: 20;
+  --z-dropdown: 30;
+  --z-overlay: 40;
+  --z-toast: 50;
+
+  /* Header */
+  --header-h-desktop: 64px;
+  --header-h-mobile: 56px;
+
+  /* Chuyển động */
+  --motion-fast: 160ms;
+  --motion-ui: 200ms;
+  --motion-slow: 240ms;
+}

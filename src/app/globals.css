@@ -1,0 +1,107 @@
+@import "tailwindcss";
+@import "../shared/styles/tokens.css";
+@import "../shared/styles/materials.css";
+
+/* Chỉ còn token ngữ nghĩa — không tồn tại bg-purple-500/text-blue-500 (DESIGN §6) */
+@theme {
+  --color-*: initial;
+
+  --color-surface-page: var(--surface-page);
+  --color-surface-panel: var(--surface-panel);
+  --color-surface-raised: var(--surface-raised);
+  --color-surface-input: var(--surface-input);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-action: var(--action-primary);
+  --color-on-action: var(--on-action);
+  --color-link: var(--link);
+
+  --color-metal-edge: var(--metal-edge);
+
+  --color-border-subtle: var(--border-subtle);
+  --color-border-control: var(--border-control);
+  --color-border-ornament: var(--border-ornament);
+
+  --color-focus-ring: var(--focus-ring);
+  --color-focus-offset: var(--focus-offset);
+
+  --color-info: var(--status-info);
+  --color-info-bg: var(--status-info-bg);
+  --color-success: var(--status-success);
+  --color-success-bg: var(--status-success-bg);
+  --color-warning: var(--status-warning);
+  --color-warning-bg: var(--status-warning-bg);
+  --color-danger: var(--status-danger);
+  --color-danger-bg: var(--status-danger-bg);
+  --color-neutral: var(--status-neutral);
+
+  --color-disabled-bg: var(--disabled-bg);
+  --color-disabled-text: var(--disabled-text);
+
+  --font-sans: var(--font-be-vietnam-pro), "Be Vietnam Pro", system-ui, sans-serif;
+  --font-display: var(--font-noto-serif-display), "Noto Serif Display", serif;
+
+  /* Breakpoint theo DESIGN §12: 640 / 1024 / 1200 */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 640px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+  --breakpoint-2xl: 1200px;
+
+  --radius-detail: var(--radius-detail);
+  --radius-control: var(--radius-control);
+  --radius-panel: var(--radius-panel);
+  --radius-overlay: var(--radius-overlay);
+
+  --z-index-sticky: var(--z-sticky);
+  --z-index-dropdown: var(--z-dropdown);
+  --z-index-overlay: var(--z-overlay);
+  --z-index-toast: var(--z-toast);
+}
+
+html {
+  scroll-padding-top: var(--header-h-desktop);
+}
+
+body {
+  background-color: var(--surface-page);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+}
+
+/* Focus ring 3px + offset tối 2px (bắt buộc cạnh nút vàng) */
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-detail);
+}
+
+a {
+  color: var(--link);
+}
+.content-link {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 639px) {
+  html {
+    scroll-padding-top: var(--header-h-mobile);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
