@@ -34,7 +34,7 @@ export function MobileNav({
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Mở menu"
-        className="inline-flex min-h-11 items-center gap-2 rounded-control px-3 py-2 text-[15px] font-medium text-text-primary hover:text-link"
+        className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-control px-2 py-2 text-sm font-medium text-text-primary hover:text-link sm:px-3 sm:text-[15px]"
       >
         <Icon name="menu" size={24} />
         Menu

@@ -71,8 +71,8 @@ export async function SiteHeader({ overHero = false }: { overHero?: boolean }) {
         Bỏ qua tới nội dung
       </a>
       <div className="mx-auto flex h-14 xl:h-16 max-w-[1200px] items-center gap-1 px-4 xl:px-8">
-        <Link href="/" aria-label="GALAXY AUTO — Trang chủ" className="mr-2 flex items-center">
-          <Wordmark />
+        <Link href="/" aria-label="GALAXY AUTO — Trang chủ" className="mr-2 flex shrink-0 items-center">
+          <Wordmark className="h-6 w-auto xl:h-7" />
         </Link>
         <nav aria-label="Điều hướng chính" className="hidden xl:flex items-center gap-1">
           <Link
@@ -97,7 +97,7 @@ export async function SiteHeader({ overHero = false }: { overHero?: boolean }) {
         <div className="ml-auto flex items-center gap-2">
           <Link
             href={sessionNav.href}
-            className="inline-flex min-h-11 items-center rounded-control border border-action px-4 py-2 text-[15px] font-semibold text-link hover:bg-[rgb(212_168_67/0.12)]"
+            className="inline-flex min-h-11 items-center whitespace-nowrap rounded-control border border-action px-3 py-2 text-sm font-semibold text-link hover:bg-[rgb(212_168_67/0.12)] xl:px-4 xl:text-[15px]"
           >
             {sessionNav.label}
           </Link>

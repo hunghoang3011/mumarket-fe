@@ -11,26 +11,7 @@ import { formatVnd } from "../format/money";
 import { GameArt } from "./GameArt";
 import { StatusLabel } from "./StatusLabel";
 
-/** Ornament góc M2: chữ L có móc mây, nét bronze + highlight vàng */
-function Ornament({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 20 20" className={className} aria-hidden="true">
-      <path
-        d="M2 18 V6 Q2 2 6 2 H18"
-        fill="none"
-        stroke="var(--metal-edge)"
-        strokeWidth="1"
-      />
-      <path
-        d="M4.5 18 V7 Q4.5 4.5 7 4.5 H18"
-        fill="none"
-        stroke="var(--action-primary)"
-        strokeWidth="1"
-      />
-      <circle cx="2" cy="18" r="1.2" fill="var(--action-primary)" />
-    </svg>
-  );
-}
+/** Ornament góc M2 trên ảnh: lớp hoa văn mây tường (class corner-brackets) */
 
 export function GameCard({
   product,
@@ -94,7 +75,7 @@ export function GameCard({
     <>
       <Link
         href={`/phan-mem/${product.slug}`}
-        className="text-lg font-semibold leading-snug text-text-primary hover:text-link xl:text-xl"
+        className="text-lg font-semibold leading-snug text-action hover:text-link xl:text-xl"
       >
         {product.name}
       </Link>
@@ -115,9 +96,9 @@ export function GameCard({
     return (
       <article
         data-testid={`game-card-${product.slug}`}
-        className="halo-frame relative flex w-[208px] flex-col rounded-panel border border-border-ornament bg-surface-panel p-3 xl:w-[220px]"
+        className="panel-lacquer halo-frame relative flex w-[208px] flex-col rounded-panel p-3 xl:w-[220px]"
       >
-        <div className="relative">
+        <div className="corner-brackets frame-gold relative rounded-detail">
           <Link href={`/phan-mem/${product.slug}`} tabIndex={-1} aria-hidden>
             <GameArt
               slug={product.slug}
@@ -125,10 +106,8 @@ export function GameCard({
               className="aspect-[3/4] w-full rounded-detail"
             />
           </Link>
-          <Ornament className="pointer-events-none absolute left-1 top-1 h-5 w-5" />
-          <Ornament className="pointer-events-none absolute right-1 top-1 h-5 w-5 -scale-x-100" />
         </div>
-        <div className="mt-3 flex flex-1 flex-col">{body}</div>
+        <div className="mt-3 flex flex-1 flex-col px-1">{body}</div>
       </article>
     );
   }
@@ -136,9 +115,9 @@ export function GameCard({
   return (
     <article
       data-testid={`game-card-${product.slug}`}
-      className="halo-frame relative flex gap-4 rounded-panel border border-border-ornament bg-surface-panel p-3"
+      className="panel-lacquer halo-frame relative flex gap-4 rounded-panel p-3"
     >
-      <div className="relative shrink-0">
+      <div className="corner-brackets frame-gold relative shrink-0 rounded-detail">
         <Link href={`/phan-mem/${product.slug}`} tabIndex={-1} aria-hidden>
           <GameArt
             slug={product.slug}
@@ -146,8 +125,6 @@ export function GameCard({
             className="h-24 w-24 rounded-detail sm:h-28 sm:w-28"
           />
         </Link>
-        <Ornament className="pointer-events-none absolute left-0.5 top-0.5 h-4 w-4" />
-        <Ornament className="pointer-events-none absolute right-0.5 top-0.5 h-4 w-4 -scale-x-100" />
       </div>
       <div className="min-w-0 flex-1">{body}</div>
     </article>

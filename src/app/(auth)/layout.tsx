@@ -5,7 +5,10 @@ export default function AuthLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <main id="noi-dung" className="flex flex-1 flex-col items-center px-4 py-10">
+    <main
+      id="noi-dung"
+      className="atmo-wuxia flex flex-1 flex-col items-center px-4 py-10"
+    >
       <Link href="/" aria-label="GALAXY AUTO — Về trang chủ">
         <Wordmark />
       </Link>

@@ -109,13 +109,15 @@ export default async function ProductPage({
         {/* Đầu trang: desktop cover 7/12 trái, thông tin 5/12 phải;
             mobile cùng thứ tự DOM xếp dọc */}
         <div className="mt-6 grid gap-6 lg:grid-cols-12">
-          <GameArt
-            slug={product.slug}
-            crop="cover"
-            className="aspect-[16/10] w-full rounded-panel lg:col-span-7"
-          />
+          <div className="corner-brackets frame-gold relative rounded-panel lg:col-span-7">
+            <GameArt
+              slug={product.slug}
+              crop="cover"
+              className="aspect-[16/10] w-full rounded-panel"
+            />
+          </div>
           <div className="lg:col-span-5">
-            <h1 className="text-3xl font-semibold leading-snug text-text-primary">
+            <h1 className="text-3xl font-semibold leading-snug text-action">
               {product.name}
             </h1>
             <div className="mt-3">

@@ -1,8 +1,8 @@
 /*
  * Hero M1 — cảnh Golden Immortal Galaxy tự dựng: tiền/trung/hậu cảnh,
- * cung điện tiên lơ lửng + chiến binh, thiên hà xanh đen, một điểm sáng
- * chính dẫn về khu chữ (bên trái). Không phải artwork có quyền; không
- * tuyên bố khớp bất kỳ ảnh tham chiếu nào (DESIGN §0, §15).
+ * cung điện tiên lơ lửng + chiến binh, thiên hà xanh đen, sương linh khí,
+ * đèn lồng và một điểm sáng chính dẫn về khu chữ (bên trái).
+ * Không phải artwork có quyền; không tuyên bố khớp ảnh tham chiếu (§0, §15).
  */
 export function HeroArt({ className }: { className?: string }) {
   return (
@@ -14,18 +14,27 @@ export function HeroArt({ className }: { className?: string }) {
     >
       <defs>
         <linearGradient id="hero-sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#060a14" />
-          <stop offset="0.55" stopColor="#0b1426" />
-          <stop offset="1" stopColor="#122238" />
+          <stop offset="0" stopColor="#05070f" />
+          <stop offset="0.5" stopColor="#0b1426" />
+          <stop offset="1" stopColor="#16233a" />
         </linearGradient>
         <radialGradient id="hero-glow" cx="0.34" cy="0.42" r="0.5">
-          <stop offset="0" stopColor="#e6c064" stopOpacity="0.28" />
+          <stop offset="0" stopColor="#e6c064" stopOpacity="0.3" />
           <stop offset="1" stopColor="#e6c064" stopOpacity="0" />
         </radialGradient>
         <linearGradient id="hero-mist" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#f5ebd6" stopOpacity="0.10" />
+          <stop offset="0" stopColor="#f5ebd6" stopOpacity="0.1" />
           <stop offset="1" stopColor="#f5ebd6" stopOpacity="0" />
         </linearGradient>
+        <linearGradient id="hero-fall" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#e6c064" stopOpacity="0.5" />
+          <stop offset="1" stopColor="#e6c064" stopOpacity="0" />
+        </linearGradient>
+        <radialGradient id="hero-lantern" cx="0.5" cy="0.5" r="0.5">
+          <stop offset="0" stopColor="#ffb46a" stopOpacity="0.85" />
+          <stop offset="0.55" stopColor="#c74731" stopOpacity="0.5" />
+          <stop offset="1" stopColor="#c74731" stopOpacity="0" />
+        </radialGradient>
       </defs>
 
       <rect width="1200" height="640" fill="url(#hero-sky)" />
@@ -37,6 +46,7 @@ export function HeroArt({ className }: { className?: string }) {
           [420, 50, 1.8], [520, 120, 1], [640, 60, 1.4], [760, 100, 1],
           [880, 50, 1.6], [990, 110, 1.2], [1080, 60, 1.5], [1140, 150, 1],
           [60, 210, 1.1], [180, 250, 1], [700, 200, 1.2], [940, 210, 1],
+          [260, 180, 0.8], [580, 170, 0.9], [830, 160, 0.8], [1040, 190, 0.9],
         ].map(([x, y, r], i) => (
           <circle key={i} cx={x} cy={y} r={r} opacity={0.55} />
         ))}
@@ -49,20 +59,34 @@ export function HeroArt({ className }: { className?: string }) {
         fill="none"
         opacity="0.06"
       />
+      <path
+        d="M-40 260 Q 340 140 700 210 T 1240 170"
+        stroke="#e6c064"
+        strokeWidth="26"
+        strokeLinecap="round"
+        fill="none"
+        opacity="0.05"
+      />
 
       {/* Điểm sáng chính duy nhất (M4) */}
       <rect width="1200" height="640" fill="url(#hero-glow)" />
       <circle cx="408" cy="268" r="54" fill="#e6c064" opacity="0.9" />
       <circle cx="408" cy="268" r="76" fill="none" stroke="#e6c064" strokeOpacity="0.25" strokeWidth="1.5" />
+      <circle cx="408" cy="268" r="110" fill="none" stroke="#e6c064" strokeOpacity="0.12" strokeWidth="1" />
 
-      {/* Hậu cảnh: dãy núi tiên xa */}
+      {/* Hậu cảnh: dãy núi tiên xa, 3 tầng */}
+      <path d="M0 400 L110 230 L230 380 L340 280 L480 410 Z" fill="#0d1a2c" opacity="0.7" />
       <path d="M0 420 L140 250 L260 400 L380 300 L520 430 Z" fill="#0c1828" />
       <path d="M700 430 L830 280 L950 410 L1060 320 L1200 440 Z" fill="#0c1828" />
+      <path d="M640 440 L790 300 L900 420 Z" fill="#0a1424" opacity="0.8" />
 
       {/* Trung cảnh: đảo tiên lơ lửng + cung điện */}
       <g>
         <path d="M760 470 Q 900 430 1040 465 L 1000 520 Q 900 545 800 522 Z" fill="#16283c" />
         <path d="M800 522 Q 900 545 1000 520 L 900 590 Z" fill="#0e1c2c" />
+        {/* Thác linh khí rơi từ đảo */}
+        <path d="M870 545 L880 640 L920 640 L932 545 Z" fill="url(#hero-fall)" opacity="0.5" />
+        <path d="M884 545 L888 640 L896 640 L900 545 Z" fill="#f5ebd6" opacity="0.25" />
         <g fill="#1e3448">
           <rect x="820" y="390" width="160" height="18" />
           <path d="M812 390 L900 368 L988 390 Z" fill="#8c622b" />
@@ -81,11 +105,21 @@ export function HeroArt({ className }: { className?: string }) {
         </g>
       </g>
 
-      {/* Đảo nhỏ bay lệch */}
+      {/* Đảo nhỏ bay lệch + thác mỏng */}
       <g opacity="0.9">
         <path d="M180 420 Q 260 400 330 418 L 305 450 Q 250 462 205 448 Z" fill="#142436" />
+        <path d="M246 450 L250 560 L258 560 L262 450 Z" fill="url(#hero-fall)" opacity="0.4" />
         <rect x="238" y="372" width="34" height="10" fill="#1e3448" />
         <path d="M232 372 L255 360 L278 372 Z" fill="#8c622b" />
+      </g>
+
+      {/* Đèn lồng trôi — hai điểm ấm */}
+      <g>
+        <circle cx="620" cy="330" r="26" fill="url(#hero-lantern)" />
+        <ellipse cx="620" cy="330" rx="9" ry="12" fill="#c74731" opacity="0.9" />
+        <rect x="616" y="316" width="8" height="4" fill="#8c622b" />
+        <circle cx="1050" cy="250" r="20" fill="url(#hero-lantern)" opacity="0.8" />
+        <ellipse cx="1050" cy="250" rx="7" ry="9" fill="#c74731" opacity="0.85" />
       </g>
 
       {/* Tiền cảnh: chiến binh đứng trên phiến đá */}
@@ -99,10 +133,14 @@ export function HeroArt({ className }: { className?: string }) {
         </g>
         <path d="M178 430 L 214 372" stroke="#d4a843" strokeWidth="3" strokeLinecap="round" />
         <path d="M206 360 L 222 376 L 208 382 Z" fill="#e6c064" />
+        {/* Kiếm khí mỏng quanh lưỡi */}
+        <path d="M172 442 L 220 366" stroke="#e6c064" strokeWidth="1" opacity="0.35" strokeLinecap="round" />
       </g>
 
-      {/* Sương linh khí */}
+      {/* Sương linh khí: ba dải tĩnh */}
       <rect x="0" y="470" width="1200" height="90" fill="url(#hero-mist)" />
+      <ellipse cx="300" cy="520" rx="360" ry="34" fill="#f5ebd6" opacity="0.05" />
+      <ellipse cx="900" cy="560" rx="420" ry="30" fill="#f5ebd6" opacity="0.04" />
       <path d="M0 560 Q 300 530 620 556 T 1200 548 V640 H0 Z" fill="#0a121e" />
     </svg>
   );

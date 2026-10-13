@@ -18,7 +18,7 @@ export function EditorialTitle({
     <div className={className}>
       <Tag
         id={id}
-        className="font-display text-2xl font-semibold uppercase tracking-[0.02em] text-action sm:text-3xl"
+        className="title-gold font-display text-2xl font-semibold uppercase tracking-[0.02em] sm:text-3xl"
       >
         {children}
       </Tag>

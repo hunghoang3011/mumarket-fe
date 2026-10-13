@@ -1,6 +1,6 @@
 /*
- * Wordmark "GALAXY AUTO" (DESIGN §1): chữ serif 700 + một nét khắc vàng mảnh.
- * Hai bản: đầy đủ và "GA". Không ship font riêng cho logo.
+ * Wordmark "GALAXY AUTO" (DESIGN §1): chữ serif 700 dát vàng gradient +
+ * nét khắc vàng mảnh. Hai bản: đầy đủ và "GA". Không ship font riêng.
  */
 export function Wordmark({
   variant = "full",
@@ -18,6 +18,13 @@ export function Wordmark({
         aria-label="GALAXY AUTO"
       >
         <title>GALAXY AUTO</title>
+        <defs>
+          <linearGradient id="wm-g-ga" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="var(--gold-shine)" />
+            <stop offset="0.55" stopColor="var(--action-primary)" />
+            <stop offset="1" stopColor="var(--metal-edge)" />
+          </linearGradient>
+        </defs>
         <text
           x="24"
           y="31"
@@ -25,7 +32,7 @@ export function Wordmark({
           fontFamily="var(--font-display)"
           fontWeight={700}
           fontSize="22"
-          fill="var(--text-primary)"
+          fill="url(#wm-g-ga)"
         >
           GA
         </text>
@@ -41,6 +48,13 @@ export function Wordmark({
       aria-label="GALAXY AUTO"
     >
       <title>GALAXY AUTO</title>
+      <defs>
+        <linearGradient id="wm-g-full" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="var(--gold-shine)" />
+          <stop offset="0.55" stopColor="var(--action-primary)" />
+          <stop offset="1" stopColor="var(--metal-edge)" />
+        </linearGradient>
+      </defs>
       <text
         x="0"
         y="22"
@@ -48,7 +62,7 @@ export function Wordmark({
         fontWeight={700}
         fontSize="19"
         letterSpacing="0.04em"
-        fill="var(--text-primary)"
+        fill="url(#wm-g-full)"
       >
         GALAXY AUTO
       </text>

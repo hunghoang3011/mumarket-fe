@@ -50,6 +50,14 @@
   --disabled-bg: #1a2433;
   --disabled-text: #8e97a5;
 
+  /* Võ lâm mở rộng — chỉ khu công khai/editorial */
+  --lacquer-hi: #2c1a10;
+  --lacquer: #1c110a;
+  --lacquer-lo: #120a06;
+  --gold-shine: #f7e7ae;
+  --cinnabar: #8f1f14;
+  --cinnabar-hi: #c74731;
+
   /* Bo góc: 4 chi tiết nhỏ, 6 control, 8 panel, 12 dialog/drawer */
   --radius-detail: 4px;
   --radius-control: 6px;

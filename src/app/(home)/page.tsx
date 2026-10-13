@@ -50,24 +50,23 @@ export default async function HomePage() {
             <div className="scrim-hero absolute inset-0 hidden sm:block" />
           </div>
           <div className="relative mx-auto flex h-full max-w-[1200px] items-center px-4 sm:px-8">
-            <div className="w-full max-w-[560px] bg-surface-page px-0 py-6 sm:rounded-panel sm:bg-[rgb(8_11_18/0.88)] sm:p-8">
-              <p className="text-base font-medium text-action">
+            <div className="panel-lacquer corner-brackets w-full max-w-[560px] rounded-panel px-4 py-6 sm:p-8">
+              <p className="text-base font-medium tracking-[0.18em] text-action">
                 Công Nghệ Khai Mở – Chinh Phục Tam Giới
               </p>
-              <h1 className="mt-3 font-display text-[clamp(2rem,4.2vw,3.5rem)] font-bold leading-[1.2] text-text-primary">
-                THẦN BINH CÔNG NGHỆ
-                <br />
-                CHINH PHỤC NGŨ ĐẠI THẾ GIỚI
+              <h1 className="title-gold mt-3 font-display text-[clamp(2rem,4.2vw,3.5rem)] font-bold leading-[1.2] [text-wrap:balance]">
+                THẦN BINH CÔNG NGHỆ CHINH PHỤC NGŨ ĐẠI THẾ GIỚI
               </h1>
               <p className="mt-4 text-base text-text-secondary">
                 Hệ sinh thái phần mềm Auto Game dành cho cộng đồng Kiếm Hiệp
                 &amp; MU.
               </p>
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
                 <LinkButton href="/phan-mem">KHÁM PHÁ PHẦN MỀM</LinkButton>
                 <LinkButton href="/bang-gia" variant="outline">
                   XEM BẢNG GIÁ
                 </LinkButton>
+                <span className="seal-mark sm:ml-3" aria-hidden="true" />
               </div>
             </div>
           </div>
@@ -110,7 +109,7 @@ export default async function HomePage() {
       </section>
 
       {/* 3. ĐỒNG HÀNH CÙNG HÀNH TRÌNH CHINH PHỤC */}
-      <section aria-labelledby="t-home-benefits" className="bg-surface-panel">
+      <section aria-labelledby="t-home-benefits" className="band-lacquer">
         <div className="mx-auto max-w-[1200px] px-4 py-12 xl:px-8 xl:py-16">
           <EditorialTitle id="t-home-benefits">
             ĐỒNG HÀNH CÙNG HÀNH TRÌNH CHINH PHỤC

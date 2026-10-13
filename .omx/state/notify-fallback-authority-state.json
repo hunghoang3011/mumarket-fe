@@ -2,13 +2,13 @@
   "owner": "hud",
   "pid": 81307,
   "cwd": "/Users/hunghoang/Downloads/mumarket-fe",
-  "heartbeat_at": "2026-10-12T23:03:42.329Z",
+  "heartbeat_at": "2026-10-13T15:03:32.902Z",
   "cooldown_ms": 5000,
-  "jitter_ms": 198,
-  "skip_count": 19954,
+  "jitter_ms": 105,
+  "skip_count": 50159,
   "last_status": "skipped",
   "last_reason": "rate_limited",
-  "last_spawn_at": "2026-10-12T23:03:38.289Z",
-  "last_skip_at": "2026-10-12T23:03:42.329Z",
-  "next_allowed_at": "2026-10-12T23:03:43.487Z"
+  "last_spawn_at": "2026-10-13T15:03:30.881Z",
+  "last_skip_at": "2026-10-13T15:03:32.902Z",
+  "next_allowed_at": "2026-10-13T15:03:35.986Z"
 }

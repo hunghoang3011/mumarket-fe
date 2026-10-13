@@ -10,7 +10,7 @@ import { Wordmark } from "../Wordmark";
 export async function SiteFooter() {
   const [products, settings] = await Promise.all([getProducts(), getSettings()]);
   return (
-    <footer className="border-t border-border-subtle bg-surface-panel">
+    <footer className="band-lacquer">
       <div className="mx-auto grid max-w-[1200px] gap-8 px-4 py-12 sm:grid-cols-2 xl:grid-cols-4 xl:px-8">
         <div>
           <Wordmark />

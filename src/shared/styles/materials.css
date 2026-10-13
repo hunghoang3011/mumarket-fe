@@ -1,27 +1,65 @@
 /*
- * Vật liệu M0–M4 (DESIGN §6). Chỉ dùng đúng vùng được phép:
- * M0 navy phẳng: mặc định, dữ liệu tiền/quyền/form/bảng.
- * M1 cảnh thiên giới: hero, cover sản phẩm, ảnh thẻ (ảnh SVG, không texture CSS).
- * M2 kim loại khắc: nút chính, ornament góc, đường chia editorial, wordmark.
- * M3 kính thiên giới: chỉ header khi nằm trên hero.
- * M4 hào quang: hover/focus thẻ game + một điểm sáng hero; tĩnh, không pulse.
+ * Vật liệu (DESIGN §6, mở rộng võ lâm theo yêu cầu chủ sở hữu 2026-10-13):
+ * M0 navy phẳng: tiền/quyền/form/bảng/tài khoản/quản trị (KHÔNG đổi).
+ * M1 cảnh thiên giới: hero, cover, ảnh thẻ (artwork SVG).
+ * M2 kim loại khắc: nút chính, ornament góc, đường chia, wordmark.
+ * M3 kính thiên giới: chỉ header trên hero.
+ * M4 hào quang: hover/focus thẻ + điểm sáng hero; tĩnh, không pulse.
+ * Vật liệu sơn mài/giấy cổ (panel-lacquer, corner-brackets, title-gold,
+ * atmo-wuxia): CHỈ khu công khai editorial — cấm dưới số tiền, form, bảng.
  */
 
-/* M2 — nút chính kim loại */
+/* ============ M2 — nút chính kim loại đúc (bevel + lóa quét) ============ */
 .btn-metal {
-  background-image: linear-gradient(180deg, var(--metal-gold-hi), var(--metal-gold-lo));
+  position: relative;
+  overflow: hidden;
+  background-image: linear-gradient(
+    180deg,
+    var(--metal-gold-hover-hi) 0%,
+    var(--metal-gold-hi) 32%,
+    var(--metal-gold-lo) 58%,
+    #8a6420 100%
+  );
   border: 1px solid var(--metal-edge);
-  box-shadow: inset 0 1px 0 rgb(255 217 120 / 0.6);
-  color: var(--on-action);
   border-radius: var(--radius-control);
+  box-shadow:
+    inset 0 1px 0 rgb(255 240 190 / 0.65),
+    inset 0 -6px 10px rgb(64 34 0 / 0.35),
+    0 4px 10px rgb(0 0 0 / 0.45);
+  color: var(--on-action);
   font-weight: 600;
-  transition: background-image var(--motion-fast) ease;
+  text-shadow: 0 1px 0 rgb(255 245 210 / 0.35);
+  transition: filter var(--motion-fast) ease, box-shadow var(--motion-fast) ease;
+}
+/* Vệt lóa kim loại quét qua khi hover */
+.btn-metal::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgb(255 250 230 / 0.35) 48%,
+    transparent 62%
+  );
+  transform: translateX(-130%) skewX(-12deg);
+  transition: transform 550ms ease;
 }
 .btn-metal:hover {
-  background-image: linear-gradient(180deg, var(--metal-gold-hover-hi), var(--metal-gold-hover-lo));
+  filter: brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgb(255 240 190 / 0.75),
+    inset 0 -6px 10px rgb(64 34 0 / 0.3),
+    0 6px 14px rgb(0 0 0 / 0.5),
+    0 0 18px rgb(212 168 67 / 0.22);
+}
+.btn-metal:hover::after {
+  transform: translateX(130%) skewX(-12deg);
 }
 .btn-metal:active {
-  background-image: linear-gradient(180deg, var(--metal-gold-lo), var(--metal-gold-hi));
+  filter: brightness(0.94);
+  box-shadow: inset 0 3px 8px rgb(64 34 0 / 0.5);
 }
 .btn-metal:disabled,
 .btn-metal[aria-disabled="true"] {
@@ -30,14 +68,19 @@
   color: var(--disabled-text);
   border-color: var(--border-subtle);
   box-shadow: none;
+  text-shadow: none;
+}
+.btn-metal:disabled::after,
+.btn-metal[aria-disabled="true"]::after {
+  display: none;
 }
 
-/* M3 — kính header trên hero */
+/* ============ M3 — kính header trên hero ============ */
 .header-glass {
   background-color: rgb(8 11 18 / 0.85);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgb(212 168 67 / 0.25);
+  border-bottom: 1px solid rgb(212 168 67 / 0.3);
 }
 @supports not (backdrop-filter: blur(8px)) {
   .header-glass {
@@ -46,10 +89,10 @@
 }
 .header-solid {
   background-color: var(--surface-page);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid rgb(212 168 67 / 0.16);
 }
 
-/* M4 — hào quang tĩnh cho thẻ game */
+/* ============ M4 — hào quang tĩnh cho thẻ game ============ */
 .halo-frame {
   position: relative;
 }
@@ -72,7 +115,7 @@
   border-color: var(--action-primary);
 }
 
-/* Scrim hero */
+/* ============ Scrim hero ============ */
 .scrim-hero {
   background-image: linear-gradient(90deg, rgb(8 11 18 / 0.92) 0 40%, transparent 70%);
 }
@@ -80,7 +123,161 @@
   background-color: rgb(8 11 18 / 0.88);
 }
 
-/* Ornament góc M2 — chữ L móc mây, 2 nét 1px */
+/* ============ Sơn mài — panel cổ phong (chỉ công khai editorial) ============ */
+.panel-lacquer {
+  position: relative;
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgb(232 200 116 / 0.07), transparent 55%),
+    linear-gradient(168deg, var(--lacquer-hi) 0%, var(--lacquer) 48%, var(--lacquer-lo) 100%);
+  border: 1px solid var(--metal-edge);
+  box-shadow:
+    inset 0 0 0 1px rgb(0 0 0 / 0.55),
+    inset 0 1px 0 rgb(255 240 190 / 0.1),
+    inset 0 -14px 26px rgb(0 0 0 / 0.42),
+    0 14px 34px rgb(0 0 0 / 0.5);
+}
+/* Khung vàng kép bên trong */
+.panel-lacquer::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgb(212 168 67 / 0.26);
+  pointer-events: none;
+}
+
+/* Hoa văn mây tường 云纹 ở 4 góc (SVG data-uri, nét vàng đồng) */
+.corner-brackets {
+  --_cb-tl: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'><path d='M2 24 V9 Q2 2 9 2 H24' fill='none' stroke='%23d4a843' stroke-width='2'/><path d='M6.5 24 V11 Q6.5 6.5 11 6.5 H24' fill='none' stroke='%23d4a843' stroke-width='1' opacity='.45'/><circle cx='4.6' cy='4.6' r='1.5' fill='%23e6c064'/></svg>");
+  --_cb-tr: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'><path d='M24 24 V9 Q24 2 17 2 H2' fill='none' stroke='%23d4a843' stroke-width='2'/><path d='M19.5 24 V11 Q19.5 6.5 15 6.5 H2' fill='none' stroke='%23d4a843' stroke-width='1' opacity='.45'/><circle cx='21.4' cy='4.6' r='1.5' fill='%23e6c064'/></svg>");
+  --_cb-bl: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'><path d='M2 2 V17 Q2 24 9 24 H24' fill='none' stroke='%23d4a843' stroke-width='2'/><path d='M6.5 2 V15 Q6.5 19.5 11 19.5 H24' fill='none' stroke='%23d4a843' stroke-width='1' opacity='.45'/><circle cx='4.6' cy='21.4' r='1.5' fill='%23e6c064'/></svg>");
+  --_cb-br: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 26 26'><path d='M24 2 V17 Q24 24 17 24 H2' fill='none' stroke='%23d4a843' stroke-width='2'/><path d='M19.5 2 V15 Q19.5 19.5 15 19.5 H2' fill='none' stroke='%23d4a843' stroke-width='1' opacity='.45'/><circle cx='21.4' cy='21.4' r='1.5' fill='%23e6c064'/></svg>");
+}
+.corner-brackets::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    var(--_cb-tl) top 3px left 3px / 22px 22px no-repeat,
+    var(--_cb-tr) top 3px right 3px / 22px 22px no-repeat,
+    var(--_cb-bl) bottom 3px left 3px / 22px 22px no-repeat,
+    var(--_cb-br) bottom 3px right 3px / 22px 22px no-repeat;
+}
+/* panel-lacquer + corner-brackets: ::before khung kép của lacquer nằm dưới hoa văn */
+.panel-lacquer.corner-brackets {
+  position: relative;
+}
+
+/* ============ Chữ vàng gradient khắc khối — chỉ ≥24px ============ */
+.title-gold {
+  background: linear-gradient(
+    180deg,
+    #fff3cf 0%,
+    var(--metal-gold-hover-hi) 30%,
+    var(--action-primary) 52%,
+    #a67c25 66%,
+    var(--metal-gold-hi) 86%,
+    #8a611a 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 0 rgb(26 14 5 / 0.8)) drop-shadow(0 6px 14px rgb(0 0 0 / 0.55));
+}
+
+/* ============ Đường chia editorial M2 (nâng cấp) ============ */
+.divider-editorial {
+  display: inline-flex;
+  align-items: center;
+  height: 10px;
+}
+.divider-editorial::before,
+.divider-editorial::after {
+  content: "";
+  width: 56px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--metal-edge) 60%, var(--action-primary));
+}
+.divider-editorial::after {
+  transform: scaleX(-1);
+}
+.divider-editorial > span {
+  width: 8px;
+  height: 8px;
+  margin: 0 10px;
+  background-color: var(--action-primary);
+  transform: rotate(45deg);
+  flex: none;
+  box-shadow: 0 0 8px rgb(212 168 67 / 0.55);
+}
+
+/* ============ Ấn triện hình học (thay con dấu Hán — không thêm font) ============ */
+.seal-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  transform: rotate(-4deg);
+  border-radius: var(--radius-detail);
+  background: radial-gradient(ellipse at 38% 30%, var(--cinnabar-hi), var(--cinnabar) 72%);
+  box-shadow:
+    inset 0 0 0 2px rgb(255 230 200 / 0.55),
+    inset 0 0 0 4px rgb(95 23 18 / 0.8),
+    inset 0 0 14px rgb(40 5 3 / 0.65),
+    0 5px 12px rgb(0 0 0 / 0.55);
+}
+.seal-mark::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  transform: rotate(45deg);
+  border: 2px solid rgb(247 227 200 / 0.85);
+}
+
+/* Dải sơn mài full-width (benefits/bước mua trang chủ) */
+.band-lacquer {
+  background:
+    radial-gradient(90% 120% at 50% -20%, rgb(232 200 116 / 0.06), transparent 60%),
+    linear-gradient(180deg, var(--lacquer-hi), var(--lacquer) 55%, var(--lacquer-lo));
+  border-top: 1px solid rgb(212 168 67 / 0.22);
+  border-bottom: 1px solid rgb(212 168 67 / 0.22);
+  box-shadow: inset 0 1px 0 rgb(255 240 190 / 0.06);
+}
+
+/* ============ Khung vàng bọc ảnh (cover, ảnh thẻ) ============ */
+.frame-gold {
+  border: 1px solid var(--metal-edge);
+  box-shadow:
+    inset 0 0 0 1px rgb(0 0 0 / 0.5),
+    0 0 0 1px rgb(0 0 0 / 0.35),
+    0 10px 24px rgb(0 0 0 / 0.5);
+}
+
+/* ============ Không khí trang công khai: noise + ambient + vignette ============ */
+.atmo-wuxia {
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='0.16'/></svg>"),
+    radial-gradient(ellipse 80% 42% at 50% -8%, rgb(212 168 67 / 0.06), transparent 65%),
+    radial-gradient(ellipse 55% 34% at 90% 26%, rgb(130 213 170 / 0.04), transparent 70%),
+    radial-gradient(ellipse 62% 40% at 6% 84%, rgb(179 53 39 / 0.05), transparent 70%);
+  background-repeat: repeat, no-repeat, no-repeat, no-repeat;
+  background-blend-mode: soft-light, normal, normal, normal;
+}
+/* Vignette tĩnh — không animation, không particle */
+.atmo-wuxia::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 120% 90% at 50% 40%, transparent 62%, rgb(4 5 9 / 0.5) 100%);
+}
+.atmo-wuxia > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============ Ornament góc M2 (giữ tương thích GameCard cũ) ============ */
 .ornament-corner {
   position: absolute;
   width: 20px;
@@ -88,32 +285,13 @@
   pointer-events: none;
 }
 
-/* Đường chia tiêu đề editorial M2 */
-.divider-editorial {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  height: 8px;
-}
-.divider-editorial::before,
-.divider-editorial::after {
-  content: "";
-  width: 56px;
-  height: 1px;
-  background-color: var(--metal-edge);
-}
-.divider-editorial > span {
-  width: 8px;
-  height: 8px;
-  margin: 0 8px;
-  background-color: var(--action-primary);
-  transform: rotate(45deg);
-  flex: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .btn-metal,
+  .btn-metal::after,
   .halo-frame::after {
     transition: none;
+  }
+  .btn-metal:hover::after {
+    transform: translateX(-130%) skewX(-12deg);
   }
 }

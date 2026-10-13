@@ -223,6 +223,32 @@ const SCENES: Record<string, () => JSX.Element> = {
   "vo-lam-2-pc": SceneVoLam2Pc,
 };
 
+/* Lớp hoàn thiện chung cho mọi artwork: ánh đèn vàng từ đỉnh, vignette
+   tối dần viền dưới, hạt nhiễu mờ — chống cảm giác "phẳng". */
+function SceneFinish() {
+  return (
+    <>
+      <defs>
+        <radialGradient id="gf-top" cx="0.5" cy="0" r="0.9">
+          <stop offset="0" stopColor="#e6c064" stopOpacity="0.14" />
+          <stop offset="0.6" stopColor="#e6c064" stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id="gf-vig" cx="0.5" cy="0.42" r="0.95">
+          <stop offset="0.55" stopColor="#000000" stopOpacity="0" />
+          <stop offset="1" stopColor="#000000" stopOpacity="0.42" />
+        </radialGradient>
+        <filter id="gf-grain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch" />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+      </defs>
+      <rect width="600" height="600" fill="url(#gf-top)" />
+      <rect width="600" height="600" fill="url(#gf-vig)" />
+      <rect width="600" height="600" filter="url(#gf-grain)" opacity="0.05" />
+    </>
+  );
+}
+
 export function GameArt({
   slug,
   crop = "card",
@@ -246,6 +272,7 @@ export function GameArt({
     >
       {title ? <title>{title}</title> : null}
       <Scene />
+      <SceneFinish />
     </svg>
   );
 }
