@@ -11,7 +11,26 @@ import { formatVnd } from "../format/money";
 import { GameArt } from "./GameArt";
 import { StatusLabel } from "./StatusLabel";
 
-/** Ornament góc M2 trên ảnh: lớp hoa văn mây tường (class corner-brackets) */
+/** Chữ Hán thư pháp trang trí theo game — watermark mờ trên ảnh (aria-hidden).
+ *  Chỉ dùng ký tự có trong subset brush-hanzi (src/app/fonts). */
+export const HANZI_BY_SLUG: Record<string, string> = {
+  "vo-lam-mien-phi": "武",
+  "vo-lam-mobile-1": "俠",
+  "kiem-the-origin": "劍",
+  "mu-luc-dia-vng": "魔",
+  "vo-lam-2-pc": "風",
+};
+
+function ArtWatermark({ slug }: { slug: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className="brush-wm bottom-1 right-2 text-5xl opacity-30 [text-shadow:0_2px_8px_rgb(0_0_0/0.7)]"
+    >
+      {HANZI_BY_SLUG[slug] ?? "武"}
+    </span>
+  );
+}
 
 export function GameCard({
   product,
@@ -106,6 +125,7 @@ export function GameCard({
               className="aspect-[3/4] w-full rounded-detail"
             />
           </Link>
+          <ArtWatermark slug={product.slug} />
         </div>
         <div className="mt-3 flex flex-1 flex-col px-1">{body}</div>
       </article>
@@ -125,6 +145,12 @@ export function GameCard({
             className="h-24 w-24 rounded-detail sm:h-28 sm:w-28"
           />
         </Link>
+        <span
+          aria-hidden="true"
+          className="brush-wm bottom-0.5 right-1 text-3xl opacity-30 [text-shadow:0_1px_4px_rgb(0_0_0/0.7)]"
+        >
+          {HANZI_BY_SLUG[product.slug] ?? "武"}
+        </span>
       </div>
       <div className="min-w-0 flex-1">{body}</div>
     </article>

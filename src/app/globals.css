@@ -43,6 +43,8 @@
 
   --font-sans: var(--font-be-vietnam-pro), "Be Vietnam Pro", system-ui, sans-serif;
   --font-display: var(--font-noto-serif-display), "Noto Serif Display", serif;
+  /* Brush thư pháp — CHỈ trang trí CJK aria-hidden, không cho chữ Việt */
+  --font-brush: var(--font-brush-hanzi), serif;
 
   /* Breakpoint theo DESIGN §12: 640 / 1024 / 1200 */
   --breakpoint-sm: 640px;

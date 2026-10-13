@@ -21,6 +21,7 @@ import type { License, Order } from "@/demo/types";
 import { formatDate, formatDateTime } from "@/shared/format/date";
 import { LinkButton } from "@/shared/ui/Button";
 import { GameArt } from "@/shared/ui/GameArt";
+import { HANZI_BY_SLUG } from "@/shared/ui/GameCard";
 import { Empty, Notice } from "@/shared/ui/Notice";
 import { PendingOrderBanner } from "@/shared/ui/PendingOrderBanner";
 import { StatusLabel } from "@/shared/ui/StatusLabel";
@@ -109,12 +110,18 @@ export default async function ProductPage({
         {/* Đầu trang: desktop cover 7/12 trái, thông tin 5/12 phải;
             mobile cùng thứ tự DOM xếp dọc */}
         <div className="mt-6 grid gap-6 lg:grid-cols-12">
-          <div className="corner-brackets frame-gold relative rounded-panel lg:col-span-7">
+          <div className="corner-brackets frame-gold relative overflow-hidden rounded-panel lg:col-span-7">
             <GameArt
               slug={product.slug}
               crop="cover"
               className="aspect-[16/10] w-full rounded-panel"
             />
+            <span
+              aria-hidden="true"
+              className="brush-wm bottom-3 right-4 text-8xl opacity-20 [text-shadow:0_2px_10px_rgb(0_0_0/0.75)]"
+            >
+              {HANZI_BY_SLUG[product.slug] ?? "武"}
+            </span>
           </div>
           <div className="lg:col-span-5">
             <h1 className="text-3xl font-semibold leading-snug text-action">

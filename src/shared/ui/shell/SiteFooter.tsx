@@ -88,7 +88,13 @@ export async function SiteFooter() {
         </nav>
       </div>
       <div className="border-t border-border-subtle">
-        <p className="mx-auto max-w-[1200px] px-4 py-4 text-xs text-text-muted xl:px-8">
+        <p
+          aria-hidden="true"
+          className="brush mx-auto max-w-[1200px] px-4 pt-4 text-center text-2xl opacity-40 xl:px-8"
+        >
+          劍氣長存
+        </p>
+        <p className="mx-auto max-w-[1200px] px-4 pb-4 pt-2 text-center text-xs text-text-muted xl:px-8">
           GALAXY AUTO — cửa hàng phần mềm auto do một chủ sở hữu vận hành.
           Không phải nhà phát hành game.
         </p>

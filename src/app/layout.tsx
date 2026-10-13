@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Be_Vietnam_Pro, Noto_Serif_Display } from "next/font/google";
+import localFont from "next/font/local";
 import { DemoBar } from "@/demo/DemoBar";
 import "./globals.css";
 
@@ -14,6 +15,17 @@ const notoSerifDisplay = Noto_Serif_Display({
   variable: "--font-noto-serif-display",
   subsets: ["latin", "vietnamese"],
   weight: ["600", "700"],
+  display: "swap",
+});
+
+/*
+ * Ma Shan Zheng (OFL) — subset 33 chữ Hán trang trí (~9.7KB), tự host.
+ * CHỈ dùng cho trang trí CJK aria-hidden; chữ tiếng Việt không dùng font
+ * này (không có glyph). Tái tạo: node scripts/subset-brush-font.mjs
+ */
+const brushHanzi = localFont({
+  src: "./fonts/brush-hanzi.woff2",
+  variable: "--font-brush-hanzi",
   display: "swap",
 });
 
@@ -35,7 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="vi"
-      className={`${beVietnamPro.variable} ${notoSerifDisplay.variable} h-full antialiased`}
+      className={`${beVietnamPro.variable} ${notoSerifDisplay.variable} ${brushHanzi.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-surface-page text-text-primary">
         {children}

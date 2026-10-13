@@ -211,7 +211,7 @@
   box-shadow: 0 0 8px rgb(212 168 67 / 0.55);
 }
 
-/* ============ Ấn triện hình học (thay con dấu Hán — không thêm font) ============ */
+/* ============ Ấn triện son với chữ thư pháp (Ma Shan Zheng subset) ============ */
 .seal-mark {
   display: inline-grid;
   place-items: center;
@@ -225,13 +225,33 @@
     inset 0 0 0 4px rgb(95 23 18 / 0.8),
     inset 0 0 14px rgb(40 5 3 / 0.65),
     0 5px 12px rgb(0 0 0 / 0.55);
+  font-family: var(--font-brush);
+  font-size: 15px;
+  line-height: 1.15;
+  color: rgb(247 227 200 / 0.92);
+  text-shadow: 0 1px 1px rgb(40 5 3 / 0.6);
+  writing-mode: vertical-rl;
+  letter-spacing: 1px;
 }
-.seal-mark::before {
-  content: "";
-  width: 16px;
-  height: 16px;
-  transform: rotate(45deg);
-  border: 2px solid rgb(247 227 200 / 0.85);
+
+/* ============ Chữ thư pháp trang trí (aria-hidden, CJK only) ============ */
+.brush {
+  font-family: var(--font-brush);
+  color: var(--action-primary);
+}
+.brush-vertical {
+  font-family: var(--font-brush);
+  writing-mode: vertical-rl;
+  color: var(--action-primary);
+}
+/* Watermark chữ Hán khổng lồ mờ phía sau (tiêu đề section, ảnh thẻ) */
+.brush-wm {
+  position: absolute;
+  pointer-events: none;
+  font-family: var(--font-brush);
+  color: var(--action-primary);
+  user-select: none;
+  line-height: 1;
 }
 
 /* Dải sơn mài full-width (benefits/bước mua trang chủ) */

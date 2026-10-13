@@ -34,10 +34,10 @@ export function MobileNav({
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Mở menu"
-        className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-control px-2 py-2 text-sm font-medium text-text-primary hover:text-link sm:px-3 sm:text-[15px]"
+        className="inline-flex min-h-11 min-w-11 items-center justify-center gap-2 whitespace-nowrap rounded-control px-2 py-2 text-sm font-medium text-text-primary hover:text-link sm:px-3 sm:text-[15px]"
       >
         <Icon name="menu" size={24} />
-        Menu
+        <span className="hidden min-[420px]:inline">Menu</span>
       </button>
       <Drawer open={open} title="Menu" onClose={() => setOpen(false)}>
         <nav aria-label="Điều hướng chính (di động)">

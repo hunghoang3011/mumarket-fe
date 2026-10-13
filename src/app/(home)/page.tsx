@@ -43,6 +43,13 @@ export default async function HomePage() {
       {/* 1. Hero — một h1 duy nhất; mobile ảnh 4:5 trên + chữ dưới nền đặc,
              desktop ảnh nền + scrim + panel chữ trái (tối đa 560px) */}
       <section aria-label="Giới thiệu" className="relative">
+        {/* Cột thư pháp dọc trang trí — aria-hidden, không mang nội dung */}
+        <span
+          aria-hidden="true"
+          className="brush-vertical absolute right-6 top-16 z-10 hidden text-6xl opacity-25 sm:block lg:right-16"
+        >
+          武林仙俠
+        </span>
         <div className="sm:relative sm:h-[600px]">
           <div className="relative aspect-[4/5] sm:absolute sm:inset-0 sm:aspect-auto">
             <HeroArt className="absolute inset-0 h-full w-full" />
@@ -66,7 +73,9 @@ export default async function HomePage() {
                 <LinkButton href="/bang-gia" variant="outline">
                   XEM BẢNG GIÁ
                 </LinkButton>
-                <span className="seal-mark sm:ml-3" aria-hidden="true" />
+                <span className="seal-mark sm:ml-3" aria-hidden="true">
+                  武林
+                </span>
               </div>
             </div>
           </div>
@@ -78,7 +87,9 @@ export default async function HomePage() {
         aria-labelledby="t-home-worlds"
         className="mx-auto max-w-[1200px] px-4 py-12 xl:px-8 xl:py-16"
       >
-        <EditorialTitle id="t-home-worlds">NGŨ ĐẠI THẾ GIỚI</EditorialTitle>
+        <EditorialTitle id="t-home-worlds" watermark="武">
+          NGŨ ĐẠI THẾ GIỚI
+        </EditorialTitle>
         <p className="mt-3 max-w-[68ch] text-base text-text-secondary">
           Khám phá hệ sinh thái phần mềm được phát triển dành riêng cho từng
           tựa game.
@@ -111,7 +122,7 @@ export default async function HomePage() {
       {/* 3. ĐỒNG HÀNH CÙNG HÀNH TRÌNH CHINH PHỤC */}
       <section aria-labelledby="t-home-benefits" className="band-lacquer">
         <div className="mx-auto max-w-[1200px] px-4 py-12 xl:px-8 xl:py-16">
-          <EditorialTitle id="t-home-benefits">
+          <EditorialTitle id="t-home-benefits" watermark="俠">
             ĐỒNG HÀNH CÙNG HÀNH TRÌNH CHINH PHỤC
           </EditorialTitle>
           <ul className="mt-8 grid gap-6 sm:grid-cols-2 sm:gap-0 xl:grid-cols-4">
@@ -139,7 +150,7 @@ export default async function HomePage() {
         aria-labelledby="t-home-steps"
         className="mx-auto max-w-[1200px] px-4 py-12 xl:px-8 xl:py-16"
       >
-        <EditorialTitle id="t-home-steps">
+        <EditorialTitle id="t-home-steps" watermark="令">
           MUA PHẦN MỀM TRONG BỐN BƯỚC
         </EditorialTitle>
         <ol className="mt-8 grid gap-8 sm:grid-cols-2 xl:grid-cols-4 xl:gap-0">
@@ -175,7 +186,9 @@ export default async function HomePage() {
         aria-labelledby="t-home-news"
         className="mx-auto max-w-[1200px] px-4 pb-16 pt-4 xl:px-8"
       >
-        <EditorialTitle id="t-home-news">CẬP NHẬT MỚI</EditorialTitle>
+        <EditorialTitle id="t-home-news" watermark="風">
+          CẬP NHẬT MỚI
+        </EditorialTitle>
         {latest.length === 0 ? (
           <p className="mt-6 text-sm text-text-muted">
             Chưa có cập nhật nào được đăng.

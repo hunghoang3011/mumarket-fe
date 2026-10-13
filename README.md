@@ -48,11 +48,23 @@ npm run test:e2e    # Playwright smoke 3 viewport (tự khởi động productio
   (catalog/commerce/licensing/content), `index.ts` (truy vấn), `store.ts`
   (lớp phủ thao tác), `session.ts` (vai trò), `DemoBar.tsx`, `config.ts` (cờ).
 
+## Font & tài sản
+
+- **Be Vietnam Pro** (400/500/600/700) + **Noto Serif Display** (600/700):
+  nạp qua `next/font/google` (tự host khi build), subset vietnamese.
+- **Ma Shan Zheng** (OFL, google/fonts) — nhưng KHÔNG ship full font (~5.8MB
+  CJK, không có glyph tiếng Việt). Repo chỉ ship bản subset 33 chữ Hán trang
+  trí (~9.7KB) tại `src/app/fonts/brush-hanzi.woff2`, tự host qua
+  `next/font/local`. Tái tạo: tải `MaShanZheng-Regular.ttf` từ
+  github.com/google/fonts rồi `node scripts/subset-brush-font.mjs`
+  (sửa chuỗi TEXT trong script khi cần thêm ký tự).
+- Artwork: placeholder SVG tự dựng (`GameArt.tsx`, `HeroArt.tsx`) — không
+  phải ảnh có quyền; thay bằng pipeline ảnh thật khi chủ sở hữu cung cấp.
+
 ## Giới hạn của bản demo (trung thực)
 
-- Artwork là **placeholder SVG tự dựng** (`src/shared/ui/GameArt.tsx`,
-  `HeroArt.tsx`) — không phải ảnh có quyền sử dụng; không tuyên bố khớp bất
-  kỳ ảnh tham chiếu nào (DESIGN §0, §15).
+- Artwork là **placeholder SVG tự dựng** — không tuyên bố khớp bất kỳ ảnh
+  tham chiếu nào (DESIGN §0, §15).
 - Không có xác thực, thanh toán, đối soát hay bản quyền thật; mọi thao tác
   chỉ đổi trạng thái phía client.
 - Thông tin ngân hàng, liên hệ, nội dung chính sách trong fixtures là dữ liệu
