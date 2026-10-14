@@ -11,12 +11,18 @@ import subsetFont from "subset-font";
 
 /* Bộ ký tự trang trí đang dùng (xem README mục Font). Thêm chữ mới → chạy lại script. */
 const TEXT =
-  "武林仙俠劍氣長存江湖魔風天山令域心月水龍鳳雲" +
+  "武林仙俠劍氣長存江湖魔風天山令域心月水龍鳳雲金" +
   "剑侠气风云龙凤茶道义·";
 
 const font = await readFile("/tmp/fonts/MaShanZheng-Regular.ttf");
 const woff2 = await subsetFont(font, TEXT, { targetFormat: "woff2" });
+/* Bản TTF cho React Native (expo-font không đọc woff2) */
+const ttf = await subsetFont(font, TEXT, { targetFormat: "truetype" });
 
 await mkdir("src/app/fonts", { recursive: true });
 await writeFile("src/app/fonts/brush-hanzi.woff2", woff2);
-console.log(`subset ${TEXT.length} ký tự → ${(woff2.byteLength / 1024).toFixed(1)} KB`);
+await mkdir("mobile/assets/fonts", { recursive: true });
+await writeFile("mobile/assets/fonts/BrushHanzi.ttf", ttf);
+console.log(
+  `subset ${TEXT.length} ký tự → web ${(woff2.byteLength / 1024).toFixed(1)} KB · mobile ${(ttf.byteLength / 1024).toFixed(1)} KB`,
+);

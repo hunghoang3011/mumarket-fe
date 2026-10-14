@@ -36,6 +36,22 @@ npm run verify      # typecheck + lint + unit + build
 npm run test:e2e    # Playwright smoke 3 viewport (tự khởi động production build)
 ```
 
+## Bản mobile (Expo / React Native) — `mobile/`
+
+Vertical slice storefront để test build trên thiết bị: Trang chủ · Phần mềm ·
+Bảng giá · Tài khoản, cùng vibe sơn mài/thư pháp. Dữ liệu demo dùng chung với
+web qua `../src/demo/fixtures` (metro `watchFolders`).
+
+```bash
+cd mobile
+npx expo start                    # Metro — mở bằng Expo Go (Orbit) hoặc quét QR
+npx expo run:ios                  # build dev client lên iOS Simulator (cần Xcode)
+npx tsc --noEmit                  # typecheck
+```
+
+Font thư pháp mobile: `mobile/assets/fonts/BrushHanzi.ttf` (subset TTF, tái
+tạo bằng `node scripts/subset-brush-font.mjs`).
+
 ## Cấu trúc
 
 - `src/app/` — route theo DESIGN §4 (public / auth / commerce / customer / admin).
